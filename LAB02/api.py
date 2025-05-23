@@ -2,10 +2,8 @@ from flask import Flask, request, jsonify
 from cipher.caesar import CaesarCipher
 from cipher.vigenere import VigenereCipher
 from cipher.railfence import RailFenceCipher
-"""
 from cipher.playfair import PlayFairCipher
 from cipher.transpostition import TranspositionCipher
-"""
 app = Flask(__name__)
 
 #CAESAR CIPHER ALGORITHM
@@ -63,7 +61,7 @@ def decrypt():
     key = int(data['key'])
     decrypted_text = railfence_cipher.rail_fence_decrypt(cipher_text, key)
     return jsonify({'decrypted_text': decrypted_text})
-"""
+
 #PLAYFAIR CIPHER ALGORITHM
 playfair_cipher = PlayFairCipher()
 @app.route('/api/playfair/creatematrix', methods=['POST'])
@@ -114,7 +112,7 @@ def transposition_decrypt():
     key = int(data.get('key'))
     decrypted_text = transposition_cipher.decrypt(cipher_text, key)
     return jsonify({'decrypted_text': decrypted_text})
-"""
+
 #main function
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
